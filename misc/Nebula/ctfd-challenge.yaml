@@ -1,0 +1,18 @@
+---
+name: Nebula
+author: Ernikus
+category: misc
+description: >
+  Decode the hidden message and find flag
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+healthcheck: healthcheck/files/*
+flags:
+  - BtSCTF{IMAGINA7ION_WI11_7AK3_u_3V3RYWH3R3!}
+state: hidden
+files:
+  - challenge/nebula-melody.json
+version: "0.1"

@@ -1,0 +1,46 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+# Required sections
+name: "Superficiality"
+author: "N3m3X1s"
+category: web
+description: |
+    Jeff recently bought this new social media platform. And now he thinks he is now Almighty God,
+    posting even more and making his posts more visible than others. It seems ... a little unfair, doesn't it?
+
+    He also thinks this platform is superior to any other, also in terms of security. Let's see if we can prove him wrong, shall we?
+
+    Log in as fake Jeff Kowalski with username "kowalski" and password "12345" and
+    post on another user's timeline the message "I_HAVE_PWNED_THIS_PLATFORM".
+
+    After you've compromised another user's timeline,
+    refresh the whole website to get a gift.
+
+
+# We use dynamic
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+
+# Optional settings
+
+# connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
+connection_info: https://superficiality-web.ch4.bts.wh.edu.pl/
+
+# Flags specify answers that your challenge use. You should generally provide at least one.
+# Can be removed if unused
+# Accepts strings or dictionaries of CTFd API data
+flags:
+    - BtSCTF{g1v3_m3_4_r34s0n_t0_br4g_t0_0th3rs}
+
+# The state of the challenge.
+# If the field is omitted, the challenge is visible by default.
+# If provided, the field can take one of two values: hidden, visible.
+state: hidden
+
+# Specifies what version of the challenge specification was used.
+# Subject to change until ctfcli v1.0.0
+version: "0.1"

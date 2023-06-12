@@ -1,0 +1,19 @@
+---
+name: Break PSI
+author: Kumber
+category: crypto
+description: >
+  Trick Alice and Bob and get your flag.
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+connection_info: nc crypto-breakpsi.ch.bts.wh.edu.pl 1337
+healthcheck: healthcheck/healthcheck_loop.sh
+flags:
+  - BtSCTF{4lWAys_sHuff1e_PSI_seTs}
+state: hidden
+files:
+  - challenge/PSI.py
+version: "0.1"

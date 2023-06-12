@@ -1,0 +1,77 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+# Required sections
+name: "Guacamole"
+author: "mephi"
+category: crypto
+description: |
+    I really don't understand what is the problem with choosing AES modes...
+    Just use Guacamole mode, it's CCA secure and easy to implement!
+# We use dynamic 
+# value: 100
+type: dynamic
+
+# The extra field provides additional fields for data during the install/sync commands/
+# Fields in extra can be used to supply additional information for other challenge types
+# For example the follow extra field is for dynamic challenges. To use these following
+# extra fields, set the type to "dynamic" and uncomment the "extra" section below
+extra:
+    initial: 500
+    decay: 100
+    minimum: 50
+
+
+# Optional settings
+
+# connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
+connection_info: nc crypto-guacamole.ch3.bts.wh.edu.pl 1337
+# or
+# connection_info: https://subdomain.ctf.domain.comm
+
+# healthcheck is a tool/script used to check a challenge
+# If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
+# ./writeup/exploit.sh --connection-info "nc hostname 12345"
+healthcheck: healthcheck/healthcheck_loop.sh
+
+# Flags specify answers that your challenge use. You should generally provide at least one.
+# Can be removed if unused
+# Accepts strings or dictionaries of CTFd API data
+flags:
+    # A static case sensitive flag
+    - BtSCTF{It'5_f0rb1dd3n_by_N1ST_t0_4tt4ck_GCM_:sob:_Y0u c4n't_do_1t!!!!_:sob:}
+
+# Hints are used to give players a way to buy or have suggestions. They are not
+# required but can be nice.
+# Can be removed if unused
+# Accepts dictionaries or strings
+# hints:
+#     - {
+#         content: "This hint costs points",
+#         cost: 10
+#     }
+#     - This hint is free
+
+# The state of the challenge.
+# If the field is omitted, the challenge is visible by default.
+# If provided, the field can take one of two values: hidden, visible.
+state: hidden
+
+# Requirements are used to make a challenge require another challenge to be
+# solved before being available.
+# Can be removed if unused
+# Accepts challenge names as strings or challenge IDs as integers
+# requirements:
+#     - "Warmup"
+#     - "Are you alive"
+
+# Provide paths to files from the same directory that this file is in
+# If challenge needs a file, it should be placed here or in the remote hosting and then in the description
+# Accepts strings
+files:
+    - challenge/chal.py
+    - challenge/guacamole.py
+
+# Specifies what version of the challenge specification was used.
+# Subject to change until ctfcli v1.0.0
+version: "0.1"
