@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300&family=VT323&display=swap');
+body {
+  background-color: #FFC72C;
+  font-family: 'Oxanium', cursive;
+  font-family: 'VT323', monospace;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  zoom: 150%;
+}
+
+#input-body {
+  background-color: #FFC72C;
+  font-family: 'Oxanium', cursive;
+  font-family: 'VT323', monospace;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  zoom: 225%;
+}
+
+h1 {
+  color: #C30000;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.background-container {
+  position: relative;
+  margin-top: 10px auto;
+  max-width: 800px;
+}
+
+img.background-image {
+  border-style: solid;
+  border-radius: 4px;
+  width: 80%;
+  max-height: 300px;
+  opacity: 0.7;
+}
+
+.row {
+  border-style: solid;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin-top: 10px;
+}
+
+.row > div {
+  margin: 10px;
+}
+
+select {
+  margin-top: 5px;
+  width: 100%;
+  font-family: 'Oxanium', cursive;
+  font-family: 'VT323', monospace;
+  text-align-last:center;
+}
+
+input {
+
+  font-family: 'Oxanium';
+  font-family: 'VT323', monospace;
+  text-align-last:center;
+}
+
+label {
+  display: block;
+}
+
+button{
+  font-family: 'Oxanium', cursive;
+  font-family: 'VT323', monospace;
+  margin: 10px;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .row > div {
+    flex-basis: 100%;
+  }
+}

@@ -1,0 +1,17 @@
+---
+name: JJail
+author: Kumber
+category: misc
+description: >
+  I've gone to jail, but I don't even know what language does everyone speak. Can you help me escape this weird jail?
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+connection_info: nc pwn-jjail.ch2.bts.wh.edu.pl 1337
+healthcheck: healthcheck/healthcheck_loop.sh
+flags:
+  - BtSCTF{W1ll_y0u_r3m3mb3r_Julia_n0w?}
+state: hidden
+version: "0.1"

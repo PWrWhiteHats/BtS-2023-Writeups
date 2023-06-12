@@ -1,0 +1,14 @@
+apiVersion: kctf.dev/v1
+kind: Challenge
+metadata:
+  name: pwn-build-a-jail
+spec:
+  deployed: true
+  powDifficultySeconds: 0
+  network:
+    public: true
+  healthcheck:
+    # TIP: disable the healthcheck during development
+    enabled: false
+    image: eu.gcr.io/bts23-prod3/pwn-build-a-jail-healthcheck:c25ef0fe0c89f858a430762b1c8444c3cdaeb620e85ec6a61dbe78d80f511236
+  image: eu.gcr.io/bts23-prod3/pwn-build-a-jail-challenge:d0f56a555e77ca6d6f6764c40ddebfe265524b744689d07da7d6f00813ad1b57

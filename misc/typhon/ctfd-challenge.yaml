@@ -1,0 +1,19 @@
+---
+name: Typhon
+author: Ernikus
+category: misc
+description: >
+  "Like Typhon with his might, destroyed Olympus' height,
+  So shall you, with skills and patience, claim the flag in sight."
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+healthcheck: healthcheck/files/*
+flags:
+  - BtSCTF{TH3_F4LL_0F_0LYMPU5}
+state: hidden
+files:
+  - challenge/typhon.zip
+version: "0.1"

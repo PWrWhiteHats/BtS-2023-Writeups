@@ -1,0 +1,47 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+# Required sections
+name: "Super secure prison v2.0"
+author: "Arqsz"
+category: pwn
+description: |
+    Look, I know I messed up with the first version of my software. 
+    I think that this one will be just fine. 
+    I implemented more validations and it should be enough to keep the bad guys away...right?
+
+    > Can you read the flag?
+
+# We use dynamic
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+# Optional settings
+
+# connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
+connection_info: nc pwn-super-secure-prison-2.ch2.bts.wh.edu.pl 1337
+
+# Flags specify answers that your challenge use. You should generally provide at least one.
+# Can be removed if unused
+# Accepts strings or dictionaries of CTFd API data
+flags:
+    # A static case sensitive flag
+    - BtSCTF{4st_j41ls_are_s0_h4rd_t0_1mpL3MeN7}
+
+# The state of the challenge.
+# If the field is omitted, the challenge is visible by default.
+# If provided, the field can take one of two values: hidden, visible.
+state: hidden
+
+# Requirements are used to make a challenge require another challenge to be
+# solved before being available.
+# Can be removed if unused
+# Accepts challenge names as strings or challenge IDs as integers
+requirements:
+    - "Super secure prison v1.0"
+
+# Specifies what version of the challenge specification was used.
+# Subject to change until ctfcli v1.0.0
+version: "0.1"

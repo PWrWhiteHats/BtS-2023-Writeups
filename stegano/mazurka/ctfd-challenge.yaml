@@ -1,0 +1,31 @@
+---
+name: Mazurka
+
+author: João Pedro M. da Costa & CoreDumped
+
+category: steganography
+
+description: “Can you find the hidden flag hidden in one of Chopin’s most famous
+  mazurkas? Wait, you don’t know who Chopin is? Here’s a photo of him too,
+  then.”
+
+type: dynamic
+
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+
+flags:
+  - BtSCTF{FR3D3R1C_CH0P1N_H4S_A_M1NUTE_OR_TW0}
+
+topics:
+  - steganography
+
+state: hidden
+
+files:
+  - challenge/index.jpeg
+  - Muriel-Nguyen-Xuan-Chopin-valse-opus64-1.mp4
+
+version: "0.1"

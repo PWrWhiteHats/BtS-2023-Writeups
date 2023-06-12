@@ -1,0 +1,24 @@
+name: "doner"
+author: "Artur Kręgiel, Tomasz Łakomy"
+category: forensics
+description: “Do you like kebab? I do, but it's hard to find a good one, could you help me?”
+
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+
+flags:
+    # A static case sensitive flag
+    - BtSCTF{B3$T_K3848_3V3R}
+
+#topics:
+#    - forensics
+
+state: hidden
+
+files:
+    - challenge/doner.jpg
+
+version: "0.1"

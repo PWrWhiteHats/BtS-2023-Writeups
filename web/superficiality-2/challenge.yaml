@@ -1,0 +1,26 @@
+apiVersion: kctf.dev/v1
+kind: Challenge
+metadata:
+  name: superficiality-2
+spec:
+  podTemplate:
+    template:
+      spec:
+        containers:
+          - name: challenge
+            securityContext:
+              readOnlyRootFilesystem: false
+  deployed: true
+  powDifficultySeconds: 0
+  network:
+    public: true
+    ports:
+      - protocol: "HTTPS"
+        targetPort: 80
+  healthcheck:
+    # TIP: disable the healthcheck during development
+    enabled: false
+  horizontalPodAutoscalerSpec:
+    minReplicas: 1
+    maxReplicas: 3
+  image: eu.gcr.io/bts-kctf-dev/superficiality-2-challenge:4b220a21cd9956f279b289cea4dd682232dbb0cf5425b018d5d0b7e5eff1ee76

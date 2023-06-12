@@ -1,0 +1,12 @@
+---
+apiVersion: kctf.dev/v1
+kind: Challenge
+metadata:
+  name: crypto-breakpsi
+spec:
+  deployed: true
+  powDifficultySeconds: 0
+  network:
+    public: false
+  healthcheck:
+    enabled: true

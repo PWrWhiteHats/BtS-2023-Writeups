@@ -1,0 +1,26 @@
+name: "chat"
+author: "Artur Kręgiel, Tomasz Łakomy"
+category: forensics
+description: “My dad didn't use discord”
+
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+
+# attempts: 5
+
+flags:
+    # A static case sensitive flag
+    - BtSCTF{1CMP_3xf1Ltr4t10n}
+
+topics:
+    - forensics
+
+state: hidden
+
+files:
+    - challenge/chat.pcapng
+
+version: "0.1"

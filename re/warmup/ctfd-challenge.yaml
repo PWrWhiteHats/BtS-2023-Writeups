@@ -1,0 +1,29 @@
+name: "warmup"
+author: " "
+category: rev
+description: |
+    You should always warm up before your workout.
+
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 100
+    minimum: 50
+
+flags:
+    - BtSCTF{Never_Gonna_Give_You_Up}
+
+hints:
+    - {
+        content: "https://www.youtube.com/watch?v=o-YBDTqX_ZU",
+        cost: 0
+    }
+    - This hint is free
+
+state: hidden
+
+files:
+    - challenge/Main
+
+version: "0.1"

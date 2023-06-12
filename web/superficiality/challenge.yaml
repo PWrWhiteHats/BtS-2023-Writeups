@@ -1,0 +1,25 @@
+apiVersion: kctf.dev/v1
+kind: Challenge
+metadata:
+  name: superficiality
+spec:
+  podTemplate:
+    template:
+      spec:
+        containers:
+          - name: challenge
+            securityContext:
+              readOnlyRootFilesystem: false
+  deployed: true
+  powDifficultySeconds: 0
+  network:
+    public: false
+    ports:
+      - protocol: "HTTPS"
+        targetPort: 80
+  healthcheck:
+    # TIP: disable the healthcheck during development
+    enabled: true
+  horizontalPodAutoscalerSpec:
+    minReplicas: 1
+    maxReplicas: 3

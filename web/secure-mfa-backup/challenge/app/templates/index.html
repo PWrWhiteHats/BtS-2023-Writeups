@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% from 'bootstrap5/form.html' import render_form, render_form_row, render_field %}
+{% from 'bootstrap5/table.html' import render_table %}
+
+{% block content %}
+<div class="row d-flex flex-column">
+    <h1 class="text-center">MFA Authenticator</h1>
+</div>
+
+{{ render_messages(container=True, dismissible=True, dismiss_animate=True) }}
+
+<div class="row d-flex mx-auto w-50 h-100 mt-5 mb-5">
+    <div class="row d-flex flex-column">
+        <p class="text-center">You can send a QR code from your service or type the secret directly (much easier)</h1>
+    </div>
+    <form method="post" action="{{ url_for('create_2fa') }}" class="form" role="form" enctype="multipart/form-data">
+        {{ mfa_form.csrf_token }}
+        <div class="mb-3">
+            <label class="form-label" for="mfa_image_field">image</label>
+            <input class="form-control" id="mfa_image_field" name="mfa_image_field" type="file">
+        </div>
+        {{ render_field(mfa_form.mfa_text_field) }}
+        {{ mfa_form.hidden_tag() }}
+        <div class="row">
+        {{ render_field(mfa_form.submit, button_size='block') }}
+        </div>
+    </form>
+</div>
+
+
+{% set safe_columns = ['name'] %}
+<table class="table">
+    <thead>
+    <tr>
+    {% for title in titles %}
+        <th scope="col">{{ title[1] }}</th>
+    {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in mfa_list %}
+        <tr>
+            {% for title in titles %}
+            {% set key = title[0] %}
+            {% set value = row[key] %}
+            {%- if key == primary_key -%}
+                <th scope="row">
+            {%- else -%}
+                <td>
+            {%- endif -%}
+            {%- if value is string -%}
+                {%- if safe_columns and key in safe_columns and row['from_image'] == True -%}
+                    {{ value|safe }}
+                {%- else -%}
+                    {{ value }}
+                {%- endif -%}
+            {%- else -%}
+                {{ value }}
+            {%- endif -%}
+            {%- if key == primary_key -%}
+                </th>
+            {%- else -%}
+                </td>
+            {%- endif -%}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

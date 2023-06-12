@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Curly Fries Restaurant</title>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Curly Fries Restaurant</h1>
+
+    <div class="background-container">
+      <img src="{{url_for('static', filename='fries.jpeg')}}" alt="Curly Fries Image" class="background-image">
+    </div>
+
+    <form action="/order" method="post">
+    <div class="row">
+      <div>
+        <div>
+          <h2>Form</h2>
+          <label for="Form">How you like your fries:  </label>
+          <select id="Form" name="Form">
+            <option value="Curly">Curly</option>
+            <option value="Extra+curly">Extra curly </option>
+            <option value="Absolute+spirale+of+curliness">Absolute spirale of curliness </option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h2>Crispiness</h2>
+          <label for="Crispiness">How crispy should they be:</label>
+          <select id="Crispiness" name="Crispiness">
+            <option value="Crispy">Crispy</option>
+            <option value="Extra+Crispy">Extra Crispy</option>
+            <option value="Absolute+crunch">Absolute crunch</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h2>Condiments</h2>
+          <label for="Condiment">What are you dipping it in:</label>
+          <select id="Condiment" name="Condiment">>
+            <option value="Ketchup">Ketchup</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Smoky+BBQ+sauce">Smoky BBQ sauce</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit"> Order</button>
+      </form>
+  </div>
+</body>
+</html>

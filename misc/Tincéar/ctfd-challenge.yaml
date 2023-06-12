@@ -1,0 +1,21 @@
+---
+name: Tincéar
+author: Ernikus
+category: misc
+description: >
+  "Hear, brave soul, a challenge lies in wait,
+  A journey long and arduous, of high stake.
+  Decode the data, unravel the key,
+  Discover the artist's secret, thy destiny."
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+healthcheck: healthcheck/files/*
+flags:
+  - BtSCTF{Seig_agus_gheobhaidh_tu}
+state: hidden
+files:
+  - challenge/tincear.zip
+version: "0.1"

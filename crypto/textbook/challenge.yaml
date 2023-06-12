@@ -1,0 +1,16 @@
+apiVersion: kctf.dev/v1
+kind: Challenge
+metadata:
+  name: crypto-textbook
+spec:
+  deployed: true
+  powDifficultySeconds: 1
+  network:
+    public: false
+    ports:
+      - protocol: "TCP"
+        targetPort: 80
+        port: 1337
+  healthcheck:
+    # TIP: disable the healthcheck during development
+    enabled: true

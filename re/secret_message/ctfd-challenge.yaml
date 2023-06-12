@@ -1,0 +1,25 @@
+---
+name: "secret_message"
+author: "Kumber"
+category: re
+description: |
+    I have found this binary, but have no idea how does it work. Can you help?
+type: dynamic
+
+extra:
+    initial: 500
+    decay: 100
+    minimum: 50
+
+healthcheck: healthcheck/healthcheck.py
+
+flags:
+    - BtSCTF{x0r_O_1s_3asy_t0_r3v:))}
+
+state: hidden
+
+files:
+    - challenge/out
+    - challenge/bin
+
+version: "0.1"

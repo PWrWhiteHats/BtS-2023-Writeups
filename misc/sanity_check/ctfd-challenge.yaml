@@ -1,0 +1,78 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+# Required sections
+name: "misc"
+author: ""
+category: misc
+description: |
+    Please join our discord server: https://discord.gg/kT6GS4xrBF
+    The flag is BtSCTF{edited timestamp of message with rules}
+# We use dynamic 
+# value: 100
+type: dynamic
+
+# The extra field provides additional fields for data during the install/sync commands/
+# Fields in extra can be used to supply additional information for other challenge types
+# For example the follow extra field is for dynamic challenges. To use these following
+# extra fields, set the type to "dynamic" and uncomment the "extra" section below
+extra:
+    initial: 500
+    decay: 100
+    minimum: 25
+
+
+# Optional settings
+
+# connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
+connection_info: https://discord.gg/rvWSgsPT
+# or
+# connection_info: https://subdomain.ctf.domain.comm
+
+# healthcheck is a tool/script used to check a challenge
+# If connection_info was provided to CTFd when the challenge was installed, it will be passed to the healthcheck script:
+# ./writeup/exploit.sh --connection-info "nc hostname 12345"
+healthcheck: healthcheck/healthcheck.sh
+
+# Flags specify answers that your challenge use. You should generally provide at least one.
+# Can be removed if unused
+# Accepts strings or dictionaries of CTFd API data
+flags:
+    # A static case insensitive flag
+    - {
+        type: "regex",
+        content: 'BtSCTF\{2023-05-2[23]T[0-9]{2}:17:38\.49.{0,40}\}',
+        data: "case_insensitive",
+    }
+# Hints are used to give players a way to buy or have suggestions. They are not
+# required but can be nice.
+# Can be removed if unused
+# Accepts dictionaries or strings
+hints:
+    - {
+        content: "Example timestamps: 2023-06-20T19:30:07.433000+00:00, 2023-06-25T14:27:41.123Z",
+        cost: 0
+    }
+
+# The state of the challenge.
+# If the field is omitted, the challenge is visible by default.
+# If provided, the field can take one of two values: hidden, visible.
+state: hidden
+
+# Requirements are used to make a challenge require another challenge to be
+# solved before being available.
+# Can be removed if unused
+# Accepts challenge names as strings or challenge IDs as integers
+# requirements:
+#     - "Warmup"
+#     - "Are you alive"
+
+# Provide paths to files from the same directory that this file is in
+# If challenge needs a file, it should be placed here or in the remote hosting and then in the description
+# Accepts strings
+# files:
+#     - dist/source.py
+
+# Specifies what version of the challenge specification was used.
+# Subject to change until ctfcli v1.0.0
+version: "0.1"

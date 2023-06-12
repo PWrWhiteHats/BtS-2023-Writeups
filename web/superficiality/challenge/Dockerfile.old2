@@ -1,0 +1,116 @@
+ARG BACKEND_LOCAL_PORT=8000
+
+ARG USER="user"
+ARG USER_WORKDIR="/home/${USER}"
+ARG USER_UID=1234
+
+# FRONTEND
+# ------------------------------------
+FROM node:14 as frontend-builder
+
+ARG USER_WORKDIR
+ARG USER
+ARG USER_UID
+
+RUN /usr/sbin/useradd -u ${USER_UID} --create-home ${USER}
+USER ${USER}
+WORKDIR ${USER_WORKDIR}
+
+COPY frontend/ .
+
+WORKDIR ${USER_WORKDIR}/frontend
+RUN ls -la 
+RUN npm install
+RUN npm run build
+
+
+# BACKEND
+# ------------------------------------
+FROM python:3.11-slim as backend-builder
+
+ARG USER_WORKDIR
+ARG USER
+ARG USER_UID
+
+RUN /usr/sbin/useradd -u ${USER_UID} --create-home ${USER}
+USER ${USER}
+WORKDIR ${USER_WORKDIR}/backend
+
+COPY backend/requirements.txt ./
+RUN pip install  --target=${USER_WORKDIR}/backend/deps --no-cache-dir -r requirements.txt
+
+COPY backend/ .
+RUN touch ${USER_WORKDIR}/backend/debug.log
+
+ENV PYTHONPATH="${USER_WORKDIR}/backend/deps"
+
+# Run Django migrations (if necessary)
+RUN python manage.py migrate
+RUN python manage.py make_some_data
+
+
+
+# PROXY
+# ------------------------------------
+FROM nginx:mainline-bullseye as app
+
+ARG BACKEND_LOCAL_PORT
+ENV BACKEND_LOCAL_PORT=${BACKEND_LOCAL_PORT}
+ARG USER_WORKDIR
+ARG USER
+ARG USER_UID
+
+ENV PYTHONPATH="${USER_WORKDIR}/backend/deps"
+
+
+RUN apt update -y && apt install gunicorn -y
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN /usr/sbin/useradd -u ${USER_UID} --create-home ${USER}
+
+RUN mkdir -p /var/cache/nginx/client_temp && \
+    mkdir -p /var/cache/nginx/proxy_temp && \
+    mkdir -p /var/cache/nginx/fastcgi_temp && \
+    mkdir -p /var/cache/nginx/uwsgi_temp && \
+    mkdir -p /var/cache/nginx/scgi_temp && \
+    chown -R ${USER}:${USER} /var/cache/nginx && \
+    chown -R ${USER}:${USER} /etc/nginx/ && \
+    chmod -R 755 /etc/nginx/ && \
+    chown -R ${USER}:${USER} /var/log/nginx
+
+USER ${USER}
+
+# Set the working directory to the backend
+WORKDIR ${USER_WORKDIR}/backend
+
+COPY flag .
+
+COPY --from=frontend-builder ${USER_WORKDIR}/frontend/dist /usr/share/nginx/html
+COPY --from=backend-builder ${USER_WORKDIR}/backend ${USER_WORKDIR}/backend
+
+COPY entrypoint-docker.sh .
+
+# Start Nginx and run Django backend
+ENTRYPOINT bash entrypoint-docker.sh
+
+
+# KCTF COMPATIBLE CONTAINER
+# ------------------------------------
+FROM gcr.io/kctf-docker/challenge
+
+COPY --from=app / /
+
+ARG BACKEND_LOCAL_PORT
+ENV BACKEND_LOCAL_PORT=${BACKEND_LOCAL_PORT}
+ARG USER_WORKDIR
+
+WORKDIR ${USER_WORKDIR}/backend
+
+COPY flag  .
+RUN echo "export WINNER_FLAG=$(cat flag)" > ${USER_WORKDIR}/.bashrc
+
+COPY --from=backend-builder ${USER_WORKDIR}/backend ./backend
+
+# Run without nsjail
+ENTRYPOINT kctf_setup && \
+    kctf_drop_privs /bin/bash -c "service nginx start && gunicorn superficiality.wsgi:application --bind localhost:${BACKEND_LOCAL_PORT}"

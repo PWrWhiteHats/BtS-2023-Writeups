@@ -1,0 +1,40 @@
+# This file represents the base specification of your challenge. It is used by
+# other tools to install and deploy your challenge.
+
+# Required sections
+name: "Secure MFA Backup"
+author: "Arqsz"
+category: web
+description: |
+    Have you seen the news? Google Authenticator will finally support backups of our MFA codes.
+    My app did this years ago, check it out! 
+    I built it with a security in mind so I have a certified auditor check it every once in a while.
+
+    > Be aware, that the auditor will delete any dangerous code when they see it
+
+# We use dynamic 
+type: dynamic
+extra:
+  initial: 500
+  decay: 100
+  minimum: 50
+
+# Optional settings
+
+# connection_info is used to provide a link, hostname, or instructions on how to connect to a challenge
+connection_info: https://secure-mfa-backup-web.ch3.bts.wh.edu.pl/
+
+# Flags specify answers that your challenge use. You should generally provide at least one.
+# Can be removed if unused
+# Accepts strings or dictionaries of CTFd API data
+flags:
+    - BtSCTF{may_I_b4ckup_my_2fa_mr_g00gle?}
+
+# The state of the challenge.
+# If the field is omitted, the challenge is visible by default.
+# If provided, the field can take one of two values: hidden, visible.
+state: hidden
+
+# Specifies what version of the challenge specification was used.
+# Subject to change until ctfcli v1.0.0
+version: "0.1"

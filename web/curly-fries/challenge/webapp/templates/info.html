@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Curly Fries Restaurant</title>
+  <link rel="stylesheet" type="text/css" href="/static/main.css">
+
+</head>
+<body>
+  <div class="wrapper">
+    <h1>Curly Fries Restaurant</h1>
+    {%if info%}
+    <div class="background-container">
+      <img src="{{url_for('static', filename='fries.jpeg')}}" alt="Curly Fries Image" class="background-image">
+    </div>
+    {%endif%}
+    <div>
+      <h2>{{info}}</h2>
+      <h3 style="margin-top: -10px;">
+        {%if items%}
+          {{items }}<br>
+        {%endif%}
+        {%if id%}
+          Order id: {{id}}<br>
+        {%endif%}
+        {%if time%}
+          Delivery time: {{time}}<br>
+        {%endif%}
+      </h3>
+    </div>
+
+    
+  </div>
+</body>
+</html>
