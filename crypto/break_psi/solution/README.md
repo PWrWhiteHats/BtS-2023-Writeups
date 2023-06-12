@@ -16,4 +16,4 @@ In a properly written PSI we don't know which elements are redundant, because se
 
 We can find one element that is in intersection and ignore rest of them (there always will be at least one, it can be proven with pigeonhole principle). Than we include redundant elements to pass correctness test and send it to both Alice and Bob. There is a risk that intersection will be correct, but the probability is very low, so it should work most of attempts.
 
-Example solving script in python is in [healthcheck.py](healthcheck.py)
+Example solving script in python is in [solution.py](solution.py)
